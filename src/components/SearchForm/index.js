@@ -90,7 +90,7 @@ export default function SearchForm() {
                                 <div key={index} className="flex items-center py-2 px-2 border-b-2">
                                     <img className="w-20 h-12 object-cover rounded-md" src={result.thumb} alt="food-example"/>
                                     <Link to={`detail-recipes/${result.key}`}>
-                                        <div className="pl-4 w-88 font-semibold hover:text-gray-500">
+                                        <div className="pl-4 w-full lg:w-88 font-semibold hover:text-gray-500">
                                             {result.title}
                                         </div>
                                     </Link>
