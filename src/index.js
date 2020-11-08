@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import './styles/tailwind.css'
+import {RecipesContextProvider} from './context/recipes-context'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <RecipesContextProvider>
     <App />
+    </RecipesContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
