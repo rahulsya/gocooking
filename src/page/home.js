@@ -45,12 +45,12 @@ export default function Home() {
                 </div>
             </div>
             <div className="container mx-auto px-5 mt-5 mb-5 text-gray-800">
-                <div className="text-2xl font-semibold">Masak Apa Hari Ini ? </div>
+                <div className="text-2xl font-semibold mb-5">Masak Apa Hari Ini ? </div>
                 {status === statusList.success ?
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
                     {items.map((item,index)=>{
                         return (
-                            <Link key={index}  to={`detail-recipes/${item.key}`}>
+                            <Link key={index}  to={`detail-recipes/${item.key}`} thumb={item.thumb}>
                             <div className="h-auto px-2 py-3 bg-gray-100 shadow-lg rounded-md">
                     <img className="h-40 w-full object-cover rounded-md" src={item.thumb} alt={item.key}/>
                     <div className="text-center w-full pt-4 font-semibold">

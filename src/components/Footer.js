@@ -1,7 +1,7 @@
 
 export default function Footer() {
     return (
-        <footer>
+        <footer >
             <div className="py-4 px-5 bg-gray-800 text-gray-100 font-semibold text-center ">
                 <div className="capitalize">GoCooking @2020
                     <div>

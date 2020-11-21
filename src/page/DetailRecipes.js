@@ -5,27 +5,41 @@ import {detailRecipe} from '../api/index'
 
 import Navbar from '../components/navbar'
 import Footer from '../components/Footer'
-import Foodex from '../assets/images/food-ex.jpg'
+// import Foodex from '../assets/images/food-ex.jpg'
+import {PropagateLoader} from 'react-spinners'
 
 export default function DetailRecipes() {
     let {params}=useRouteMatch()
     const [recipes,setRecipes]=useState('')
     const [ingredient,setIngredient]=useState([])
     const [step,setStep]=useState([])
+    const [loading,setLoading]=useState(true)
     
     useEffect(()=>{
+        setLoading(true)
         detailRecipe(params?.key)
         .then(res=>{
             let {title,thumb,desc,servings,times,dificulty}=res.data.results
             setRecipes({title,thumb,desc,servings,times,dificulty})
             setIngredient(res.data.results.ingredient)
             setStep(res.data.results.step)
+            setLoading(false)
         })
         .catch(err=>console.log(err.message))
     },[params])
     return (
-        <div className="h-full w-full">
+        <div>
             <Navbar/>
+            {loading ?
+            <div className="flex justify-center items-center text-4xl mt-64 mb-64">
+                <PropagateLoader
+                className="mx-auto"
+                color="black"
+                margin={5}
+                size={25}
+                />
+            </div>
+            :
             <div className="container mx-auto px-5">
                 <div className="text-xl lg:text-3xl font-semibold mt-5 w-full">
                 {recipes.title}
@@ -33,11 +47,14 @@ export default function DetailRecipes() {
                 <div className="w-full">
                 {recipes.desc}
                 </div>
-                <img src={recipes.thumb ? recipes.thumb : Foodex} 
-                className="mt-4 mb-5 
-                w-full h-auto object-cover
-                rounded-md shadow-lg"
-                alt="ayam kecap"/>
+                {recipes.thumb !==null ? 
+                    <img src={recipes.thumb} 
+                    className="mt-4 mb-5 
+                    w-full h-auto object-cover
+                    rounded-md shadow-lg"
+                    alt={`gmr-${recipes.title}`}/>                
+                : ''}
+                
                 <div className="flex flex-col-reverse lg:flex-row justify-between mb-5">
                     <div className="flex flex-col">
                         <div>
@@ -81,7 +98,8 @@ export default function DetailRecipes() {
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>}
+            
             <Footer/>
         </div>
     )
