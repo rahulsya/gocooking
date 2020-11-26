@@ -1,95 +1,129 @@
-import {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import {BeatLoader} from 'react-spinners'
-
-import NavBar from '../components/navbar'
-import SearchForm from '../components/SearchForm'
+import React from 'react'
+import Navbar from '../components/navbar'
+import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 
-import {getRecipes} from '../api'
-
-const statusList={
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
-}
+import FoodImg from '../assets/images/food-ex.jpg'
 
 export default function Home() {
-    
-    const [items,setItems]=useState([''])
-    const [status,setStatus]=useState(statusList.idle)
-    
-    useEffect(()=>{
-        (async()=>{
-            try {
-                setStatus(statusList.process)
-                let response=await getRecipes()
-                setItems(response.data.results)
-                setStatus(statusList.success)
-            } catch (error) {
-                console.error(error.message)
-                setStatus(statusList.error)
-            }
-        })()
-    },[])
     return (
-        <div className="h-screen w-full ">
-            <NavBar/>
-            <div className="w-full h-112 bg-cover bg-center bg-gray-200" style={{backgroundImage:`url('https://source.unsplash.com/wMzx2nBdeng/1600x900')`}}>
-                <div className="flex flex-col items-center">
-                    <div className="text-3xl font-semibold capitalize mt-32">search your recipies</div>
-                    <div className="mt-4 w-full">
-                        <SearchForm/>
+        <>
+            <Navbar/>
+            <Hero/>
+            <div className="container mx-auto px-5 mt-12 ">
+                <div className="title-section ">
+                    # Resep Hari Ini
+                </div>
+                <div className="flex flex-col mb-5">
+                    <div className="w-full grid lg:grid-cols-3 gap-4">
+                    <div className="h-auto card border-2 border-yellow-500">
+                                <div className="flex justify-end">
+                                    <button className="px-3 py-1 absolute -mt-6 bg-red-500 text-white font-bold">+</button>
+                                </div>
+                                <img className="h-40 w-full object-cover rounded-md" src={FoodImg} alt="food-one"/>
+                                <div className="text-center w-full pt-4 font-semibold">
+                                    Resep Udang Galah Santan Kecap, Siapkan untuk Momen Spesialmu
+                                </div>
+                                <div className="divide-y divide-gray-400">
+                                    <div className="text-center py-2"></div>
+                                    <div className="text-center py-2"></div>
+                                </div>
+                                <div className="flex flex-row justify-between items-center text-center px-5 mb-4  font-semibold">
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Waktu Masak</div>
+                                        <div>1jam 45mnt</div>
+                                    </div>
+                                    <div className="flex flex-col mx-3">
+                                        <div className="text-sm text-gray-500">Porsi</div>
+                                        <div>8 Porsi</div>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Level</div>
+                                        <div>Cukup Rumit</div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div className="h-auto card border-2 border-yellow-500">
+                                <div className="flex justify-end">
+                                    <button className="px-3 py-1 absolute -mt-6 bg-red-500 text-white font-bold">+</button>
+                                </div>
+                                <img className="h-40 w-full object-cover rounded-md" src={FoodImg} alt="food-one"/>
+                                <div className="text-center w-full pt-4 font-semibold">
+                                    Resep Udang Galah Santan Kecap, Siapkan untuk Momen Spesialmu
+                                </div>
+                                <div className="divide-y divide-gray-400">
+                                    <div className="text-center py-2"></div>
+                                    <div className="text-center py-2"></div>
+                                </div>
+                                <div className="flex flex-row justify-between items-center text-center px-5 mb-4  font-semibold">
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Waktu Masak</div>
+                                        <div>1jam 45mnt</div>
+                                    </div>
+                                    <div className="flex flex-col mx-3">
+                                        <div className="text-sm text-gray-500">Porsi</div>
+                                        <div>8 Porsi</div>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Level</div>
+                                        <div>Cukup Rumit</div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div className="h-auto card border-2 border-yellow-500">
+                                <div className="flex justify-end">
+                                    <button className="px-3 py-1 absolute -mt-6 bg-red-500 text-white font-bold">+</button>
+                                </div>
+                                <img className="h-40 w-full object-cover rounded-md" src={FoodImg} alt="food-one"/>
+                                <div className="text-center w-full pt-4 font-semibold">
+                                    Resep Udang Galah Santan Kecap, Siapkan untuk Momen Spesialmu
+                                </div>
+                                <div className="divide-y divide-gray-400">
+                                    <div className="text-center py-2"></div>
+                                    <div className="text-center py-2"></div>
+                                </div>
+                                <div className="flex flex-row justify-between items-center text-center px-5 mb-4  font-semibold">
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Waktu Masak</div>
+                                        <div>1jam 45mnt</div>
+                                    </div>
+                                    <div className="flex flex-col mx-3">
+                                        <div className="text-sm text-gray-500">Porsi</div>
+                                        <div>8 Porsi</div>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="text-sm text-gray-500">Level</div>
+                                        <div>Cukup Rumit</div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div className="w-full mx-3">
+                        <div className="h-40 text-center flex justify-center">
+                            <button className="px-3 py-2 text-2xl text-white font-bold bg-yellow-500 self-center shadow-2xl">Lebih Banyak Resep {`>`} </button>
+                        </div>
+                    </div>
+                </div>
+                {/* section */}
+                <div className="title-section ">
+                    # Mengapa Go Cooking
+                </div>
+                <div className="grid lg:grid-cols-3 gap-4 mb-32">
+                    <div className="card h-64 text-center">
+                        <div className="text-2xl font-bold mb-3">Lengkap</div>
+                        <p className="capitalize">Kami Menyedikan Lebih Dari Ribuan Resep Makanan, lengkap mulai dari takaran bahan - bahan yang dibutuhkan untuk tiap makanan dan langkah - langkah cara Memasaknya</p>
+                    </div>
+                    <div className="card h-64 text-center">
+                        <div className="text-2xl font-bold mb-3">Easy</div>
+                        <p className="capitalize">Easy atau Mudah bagi anda yang tidak pernah masak sebelumnya dapat mencoba karna terdapat level atau tingkat kesulitan dalam tiap resep tersebut, bagi anda yang pemula bisa mengikuti level yang mudah terlebih dahulu</p>
+                    </div>
+                    <div className="card h-64 text-center">
+                        <div className="text-2xl font-bold mb-3">Simpan Nanti</div>
+                        <p className="capitalize">Simpan nanti adalah fitur untuk menandai resep yang akan user coba dikemudian hari, dengan menekan icon plus pada tiap card resep yang di tampilkan </p>
                     </div>
                 </div>
             </div>
-            <div className="container mx-auto px-5 mt-5 mb-5 text-gray-800">
-                <div className="text-2xl font-semibold mb-5">Masak Apa Hari Ini ? </div>
-                {status === statusList.success ?
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
-                    {items.map((item,index)=>{
-                        return (
-                            <Link key={index}  to={`detail-recipes/${item.key}`} thumb={item.thumb}>
-                            <div className="h-auto px-2 py-3 bg-gray-100 shadow-lg rounded-md">
-                    <img className="h-40 w-full object-cover rounded-md" src={item.thumb} alt={item.key}/>
-                    <div className="text-center w-full pt-4 font-semibold">
-                        {item.title}
-                    </div>
-                    <div className="divide-y divide-gray-400">
-                        <div className="text-center py-2"></div>
-                        <div className="text-center py-2"></div>
-                    </div>
-                    <div className="flex flex-row justify-between items-center text-center px-5 mb-4  font-semibold">
-                        <div className="flex flex-col">
-                            <div className="text-sm text-gray-500">Waktu Masak</div>
-                            <div>{item.times}</div>
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="text-sm text-gray-500">Porsi</div>
-                            <div>{item.portion}</div>
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="text-sm text-gray-500">Level</div>
-                            <div>{item.dificulty}</div>
-                        </div>
-                    </div>
-                </div>
-                            </Link>
-                        )
-                    })}
-            </div>
-                :<div className="text-4xl text-center mt-12 mb-12">
-                    <BeatLoader
-                    color="black"
-                    margin={5}
-                    size={25}
-                    />
-                </div>
-                }
-            </div>
-
             <Footer/>
-        </div>
+        </>
     )
 }

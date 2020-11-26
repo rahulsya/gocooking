@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link,useLocation } from 'react-router-dom'
 
-export default function navbar() {
+export default function NavBar() {
+    let location=useLocation()
+    const activeNavLink=(path)=>{
+        return location.pathname===path ? `font-bold text-yellow-500` : ''
+    }
+
     return (
         <header>
             <div className="py-4 px-5 bg-gray-800">
@@ -12,13 +17,10 @@ export default function navbar() {
                             {/* </Link> */}
                     </div>
                     <nav className="">
-                        <ul className="flex items-center font-semibold text-white">
-                        <li className="mx-3">
-                            <Link to="/">Home</Link>
-                        </li>
-                        {/* <li className="mx-3">
-                            <Link to="/detail-recipes/1">About</Link>
-                        </li> */}
+                        <ul className="flex items-center font text-white">
+                            <li className={`mx-3 ${activeNavLink('/')}`}><Link to="/">Home</Link></li>
+                            <li className={`mx-3 ${activeNavLink('/recipes')}`}><Link to="/recipes">Recipes</Link></li>
+                            <li className={`mx-3 ${activeNavLink('/about')}`}><Link to="/about">About</Link></li>
                         </ul>
                     </nav>
                 </div>
