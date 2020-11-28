@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {BeatLoader} from 'react-spinners'
 
@@ -6,33 +6,19 @@ import NavBar from '../components/navbar'
 import SearchForm from '../components/SearchForm'
 import Footer from '../components/Footer'
 
-import {getRecipes} from '../api'
+
+import {recipesContext} from '../context/recipes-context'
 
 const statusList={
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
+    idle: "idle",
+    process: "process",
+    success: "success",
+    error: "error",
 }
 
 export default function Recipes() {
-    
-    const [items,setItems]=useState([''])
-    const [status,setStatus]=useState(statusList.idle)
-    
-    useEffect(()=>{
-        (async()=>{
-            try {
-                setStatus(statusList.process)
-                let response=await getRecipes()
-                setItems(response.data.results)
-                setStatus(statusList.success)
-            } catch (error) {
-                console.error(error.message)
-                setStatus(statusList.error)
-            }
-        })()
-    },[])
+    const {recipes,status,handleSave}=useContext(recipesContext)
+
     return (
         <div className="h-screen w-full ">
             <NavBar/>
@@ -48,16 +34,20 @@ export default function Recipes() {
                 <div className="text-2xl font-semibold mb-5">Masak Apa Hari Ini ? </div>
                 {status === statusList.success ?
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-                    {items.map((item,index)=>{
+                    {recipes.map((recipe,index)=>{
                         return (
-                            <Link key={index}  to={`detail-recipes/${item.key}`} thumb={item.thumb}>
-                            <div className="h-auto card border-2 border-yellow-500">
+                            <div key={index}  className="h-auto card border-2 border-yellow-500">
                                 <div className="flex justify-end">
-                                    <button className="px-3 py-1 absolute -mt-6 bg-red-500 text-white font-bold">+</button>
+                                    <button 
+                                    className="px-3 py-1 absolute -mt-6 
+                                    bg-red-500 text-white font-bold"
+                                    onClick={()=>handleSave(recipe)}
+                                    >+</button>
                                 </div>
-                                <img className="h-40 w-full object-cover rounded-md" src={item.thumb} alt={item.key}/>
+                                <Link to={`detail-recipes/${recipe.key}`} thumb={recipe.thumb}>
+                                <img className="h-40 w-full object-cover rounded-md" src={recipe.thumb} alt={recipe.key}/>
                                 <div className="text-center w-full pt-4 font-semibold">
-                                    {item.title}
+                                    {recipe.title}
                                 </div>
                                 <div className="divide-y divide-gray-400">
                                     <div className="text-center py-2"></div>
@@ -66,19 +56,19 @@ export default function Recipes() {
                                 <div className="flex flex-row justify-between items-center text-center px-5 mb-4  font-semibold">
                                     <div className="flex flex-col">
                                         <div className="text-sm text-gray-500">Waktu Masak</div>
-                                        <div>{item.times}</div>
+                                        <div>{recipe.times}</div>
                                     </div>
                                     <div className="flex flex-col mx-3">
                                         <div className="text-sm text-gray-500">Porsi</div>
-                                        <div>{item.portion}</div>
+                                        <div>{recipe.portion}</div>
                                     </div>
                                     <div className="flex flex-col">
                                         <div className="text-sm text-gray-500">Level</div>
-                                        <div>{item.dificulty}</div>
+                                        <div>{recipe.dificulty}</div>
                                     </div>
                                 </div>
-                            </div>
                             </Link>
+                            </div>
                         )
                     })}
             </div>
