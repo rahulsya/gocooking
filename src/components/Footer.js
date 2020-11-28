@@ -5,7 +5,7 @@ export default function Footer() {
             <div className="py-4 px-5 bg-gray-800 text-gray-100 font-semibold text-center ">
                 <div className="capitalize">GoCooking @2020
                     <div>
-                        <a className="underline" href="https://github.com/tomorisakura/unofficial-masakapahariini-api" _blank>
+                        <a className="underline" href="https://github.com/tomorisakura/unofficial-masakapahariini-api">
                         Api from Unofficial-masakapahariini
                         </a>
                     </div>

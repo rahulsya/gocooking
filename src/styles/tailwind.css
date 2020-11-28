@@ -23586,6 +23586,13 @@ video {
   border-radius: 0.375rem;
 }
 
+.title-section {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
