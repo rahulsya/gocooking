@@ -1,4 +1,5 @@
-import {createContext, useState,useEffect} from 'react'
+import {createContext, useState,useEffect,useContext} from 'react'
+import {toast} from 'react-toastify'
 import {getRecipes} from '../api/index'
 
 export const recipesContext=createContext()
@@ -8,6 +9,10 @@ const statusList={
     process: "process",
     success: "success",
     error: "error",
+}
+
+export const useRecipes=()=>{
+    return useContext(recipesContext)
 }
 
 export const RecipesContextProvider=({children})=>{
@@ -52,13 +57,42 @@ export const RecipesContextProvider=({children})=>{
         })
     }
 
+    // toastify
+    const notify=()=>{
+        toast.success("Resep Tersimpan 👨‍🍳!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log('toast');
+    }
+
+    const removeNetify=()=>{
+        toast.error('Resep Di Hapus ❎ !', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+
     return(
         <recipesContext.Provider value={{
             recipes,
             status,
             handleSave,
             saveRecipes,
-            handleRemoveItem}}>
+            handleRemoveItem,
+            notify,
+            removeNetify
+            }}>
             {children}
         </recipesContext.Provider>
     )
