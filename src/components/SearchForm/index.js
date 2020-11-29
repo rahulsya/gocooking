@@ -25,6 +25,9 @@ export default function SearchForm() {
     }
 
     const handleSearch=()=>{
+        if (!keyword) {
+            return setActive(false)
+        }
         (async()=>{
             try {
                 // active the box result
