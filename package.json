@@ -14,12 +14,14 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-spinners": "^0.9.0",
+    "react-toastify": "^6.1.0",
     "tailwindcss": "^1.9.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "build:styles": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "start": "SET PORT=5005 && npm run build:styles && react-scripts start",
+    "run-dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
