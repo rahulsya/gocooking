@@ -1,17 +1,21 @@
-import {useContext} from 'react'
 import {Link} from 'react-router-dom'
-import {recipesContext} from '../context/recipes-context'
+import {useRecipes} from '../context/recipes-context'
 
 import Navbar from '../components/navbar'
+import Footer from '../components/Footer'
+
+import {ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 import {ReactComponent as Empty} from '../assets/images/empty.svg'
 
 export default function SaveRecipes() {
-    const {saveRecipes,handleRemoveItem}=useContext(recipesContext)
+    const {saveRecipes,handleRemoveItem,removeNetify}=useRecipes()
     
     return (
         <>
          <Navbar/>   
-         <div className="container mx-auto px-5">
+         <div className="min-h-screen container mx-auto px-5 mb-5">
              <div className="text-2xl font-bold mt-5 mb-5">
                  # Resep Disimpan
              </div>
@@ -24,10 +28,13 @@ export default function SaveRecipes() {
                                     <button 
                                     className="px-3 py-1 absolute -mt-6 
                                     bg-red-500 text-white font-bold"
-                                    onClick={()=>handleRemoveItem(recipe.key)}
+                                    onClick={()=>{
+                                        handleRemoveItem(recipe.key)
+                                        removeNetify()
+                                    }}
                                     >X</button>
                                 </div>
-                                <Link to={`detail-recipes/${recipe.key}`} thumb={recipe.thumb}>
+                            <Link to={`detail-recipes/${recipe.key}`} thumb={recipe.thumb}>
                                 <img className="h-40 w-full object-cover rounded-md" src={recipe.thumb} alt={recipe.key}/>
                                 <div className="text-center w-full pt-4 font-semibold">
                                     {recipe.title}
@@ -67,6 +74,8 @@ export default function SaveRecipes() {
             </div>
             }
          </div>
+         <ToastContainer/>
+         <Footer/>
         </>
     )
 }
