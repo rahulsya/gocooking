@@ -8,19 +8,19 @@ import {ReactComponent as Member} from '../assets/images/user.svg'
 const members=[
     {
         nama:'Aldy',
-        npm:666666
+        npm:10118476
     },
     {
-        nama:'Nanda',
-        npm:666666
+        nama:'Ruliff',
+        npm:16118389
     },
     {
         nama:'Milejardo',
-        npm:666666
+        npm:14118134
     },
     {
         nama:'Milano',
-        npm:666666
+        npm:14118133
     },
     {
         nama:'Rahul',
